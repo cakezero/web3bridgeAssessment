@@ -1,0 +1,46 @@
+<h1>The Quiz Site</h1>
+
+<head>
+    <title>Quiz App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+        <ul>
+            <li>
+                How many legs does a cat have? <input type="text" id="q1" />
+            </li>
+            <li>
+                How many legs does a table have? <input type="text" id="q2" />
+            </li>
+            <li>
+                How many legs does a human have? <input type="text" id="q3" />
+            </li>
+            <li>
+                How many days are in a week? <input type="text" id="q4" />
+            </li>
+        </ul>
+        <button type="submit" id="submit">Submit Answers</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#submit').click(function () {
+                var q1 = $('#q1').val();
+                var q2 = $('#q2').val();
+                var q3 = $('#q3').val();
+                var q4 = $('#q4').val();
+                fetch('/question', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ q1, q2, q3, q4})
+                }).then(async (result) => {
+                    var d = await result.json()
+                    $("#result").html("You answered 5 questions and got " + d.correct + " and failed " + d.failed);
+                }).catch(err => console.log(err));
+            })
+        })
+    </script>
+</body>
