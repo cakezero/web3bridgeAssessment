@@ -4,14 +4,13 @@ const app = express()
 app.use(express.json())
 app.set('view engine', 'ejs')
 
-let correct = 0
-let failed = 0
-
 app.get('/', (req, res) => {
     res.render('index');
 })
 
 app.post('/question', (req, res) => {
+    let correct = 0
+    let failed = 0
     const data = req.body
     if (data.q1 == 4) {
         correct += 1
