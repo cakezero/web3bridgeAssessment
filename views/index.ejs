@@ -38,7 +38,7 @@
                     body: JSON.stringify({ q1, q2, q3, q4})
                 }).then(async (result) => {
                     var d = await result.json()
-                    $("#result").html("You answered 5 questions and got " + d.correct + " and failed " + d.failed);
+                    $("#result").html("You answered 4 questions and got " + d.correct + " correct and failed " + d.failed);
                 }).catch(err => console.log(err));
             })
         })
