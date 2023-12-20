@@ -5,7 +5,7 @@ app.use(express.json())
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.render('./views/index.ejs');
+    res.send('hello');
 })
 
 app.post('/question', (req, res) => {
